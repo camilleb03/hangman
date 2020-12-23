@@ -1,18 +1,9 @@
-import requests
-import os
 import sys
 import random
 # Import temporary word lists
 from word_list import words
 # Arbitraty numbers of max attempts
 TOTAL_ATTEMPTS = 7
-
-# Set apikey to the APIKEY in the environment variables
-# apikey = os.environ["API_KEY"]
-# Print the key to check is works
-# print(apikey)
-# api_url = ''
-# data = requests.get(api_url).json()
 
 def choose_random_word():
     selected_word = random.choice(words)
