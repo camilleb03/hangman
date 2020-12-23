@@ -15,6 +15,8 @@ TOTAL_ATTEMPTS = 7
 
 def choose_random_word():
     selected_word = random.choice(words)
+    while (("-" or " ") in selected_word):
+        selected_word = random.choice(words)
     return selected_word
 
 def present_game_status(presented_word, current_attempts, attempted_letters):
@@ -68,13 +70,18 @@ def main():
             # Can only be one single character
             if len(user_letter) != 1:
                 continue
+            # Letter was already attempted
+            if user_letter in attempted_letters:
+                print(f"Letter {user_letter} was already attempted")
+                continue
+            # Add letter to attempted letters
+            attempted_letters.append(user_letter)
+            # Letter is in the selected word
             if user_letter in selected_word:
                 letter_indexes = find_index_letter_in_word(user_letter, selected_word)
                 for index in letter_indexes:
                     presented_word = replace_letter_in_word(index, user_letter, presented_word)
             else:
-                # Add letter to attempted letters
-                attempted_letters.append(user_letter)
                 current_attempts += 1
 
 if __name__ == "__main__":
